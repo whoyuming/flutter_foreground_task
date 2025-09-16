@@ -187,7 +187,7 @@ class ForegroundService : Service() {
         super.onDestroy()
         val isTimeout = this.isTimeout
         destroyForegroundTask(isTimeout)
-        stopForegroundService()
+//        stopForegroundService()
         unregisterBroadcastReceiver()
 
         var isCorrectlyStopped = false
@@ -281,7 +281,7 @@ class ForegroundService : Service() {
         RestartReceiver.cancelRestartAlarm(this)
 
         releaseLockMode()
-        stopForeground(true)
+        stopForeground(false)
         stopSelf()
 
         _isRunningServiceState.update { false }
@@ -318,7 +318,7 @@ class ForegroundService : Service() {
 
         // notification intent
         val contentIntent = getContentIntent()
-        val deleteIntent = getDeleteIntent()
+//        val deleteIntent = getDeleteIntent()
 
         // notification actions
         var needsRebuildButtons = false
@@ -357,7 +357,7 @@ class ForegroundService : Service() {
                 builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                builder.setDeleteIntent(deleteIntent)
+//                builder.setDeleteIntent(deleteIntent)
             }
 
             val actions = buildNotificationActions(currButtons, needsRebuildButtons)
